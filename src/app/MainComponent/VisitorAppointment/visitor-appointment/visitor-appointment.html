@@ -1,0 +1,143 @@
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <div class="sidebar">
+
+    <button class="book-btn" (click)="openModal()">
+      + Book Appointment
+    </button>
+
+    <div class="tabs">
+
+      <div class="tab"
+           [class.active]="activeTab === 'current'"
+           (click)="activeTab = 'current'">
+        Current Appointments
+      </div>
+
+      <div class="tab"
+           [class.active]="activeTab === 'history'"
+           (click)="activeTab = 'history'">
+        Appointment History
+      </div>
+
+    </div>
+
+    <!-- 🔥 DASHBOARD BUTTON BELOW HISTORY -->
+    <button class="dashboard-btn" [routerLink]="['/']">
+  ⬅ Go to Dashboard
+</button>
+
+  </div>
+
+  <!-- ===== CONTENT ===== -->
+  <div class="content">
+
+    <h2>
+      {{ activeTab === 'current'
+          ? 'Current Appointments'
+          : 'Appointment History' }}
+    </h2>
+
+    <!-- CURRENT -->
+    <div *ngIf="activeTab === 'current'">
+
+      <div *ngFor="let a of currentAppointments" class="card">
+        <p><strong>Date:</strong> {{a.appointmentDate | date:'medium'}}</p>
+        <p><strong>Name:</strong> {{a.bookerName}}</p>
+        <p><strong>Contact:</strong> {{a.bookerContactNumber}}</p>
+        <p><strong>Address:</strong> {{a.appointmentAddress}}</p>
+        <p><strong>Reason:</strong> {{a.appointmentReason}}</p>
+        <p><strong>Status:</strong> {{getStatusText(a.appointmentStatus)}}</p>
+      </div>
+
+      <p *ngIf="currentAppointments.length === 0">
+        No pending appointments
+      </p>
+
+    </div>
+
+    <!-- HISTORY -->
+    <div *ngIf="activeTab === 'history'">
+
+      <div *ngFor="let a of historyAppointments" class="card">
+        <p><strong>Date:</strong> {{a.appointmentDate | date:'medium'}}</p>
+        <p><strong>Name:</strong> {{a.bookerName}}</p>
+        <p><strong>Contact:</strong> {{a.bookerContactNumber}}</p>
+        <p><strong>Address:</strong> {{a.appointmentAddress}}</p>
+        <p><strong>Reason:</strong> {{a.appointmentReason}}</p>
+        <p><strong>Status:</strong> {{getStatusText(a.appointmentStatus)}}</p>
+      </div>
+
+      <p *ngIf="historyAppointments.length === 0">
+        No history found
+      </p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" *ngIf="showModal">
+
+  <div class="modal-box">
+
+    <button class="close" (click)="closeModal()">✖</button>
+
+    <h2>Book Appointment</h2>
+
+    <form #f="ngForm" (ngSubmit)="bookAppointment(f)">
+      
+
+      <input
+        placeholder="Name"
+        name="name"
+        [(ngModel)]="form.name"
+        required
+      >
+
+      <!-- 🔥 10 DIGIT MOBILE NUMBER -->
+      <input
+        placeholder="Mobile Number"
+        name="contact"
+        maxlength="10"
+        pattern="[0-9]{10}"
+        inputmode="numeric"
+        [(ngModel)]="form.contact"
+        (input)="allowOnlyNumbers($event)"
+        required
+      >
+
+      <input
+        placeholder="Address"
+        name="address"
+        [(ngModel)]="form.address"
+        required
+      >
+
+      <textarea
+        placeholder="Reason"
+        name="reason"
+        [(ngModel)]="form.reason"
+        required>
+      </textarea>
+
+      <input
+        type="datetime-local"
+        name="date"
+        [min]="todayMinDate"
+        [(ngModel)]="form.appointmentDate"
+        required
+      >
+
+      <button type="submit" [disabled]="f.invalid">
+        Submit
+      </button>
+
+    </form>
+
+  </div>
+
+</div>

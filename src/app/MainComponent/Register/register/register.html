@@ -1,0 +1,59 @@
+<div class="health-bg">
+
+  <div class="health-angle"></div>
+
+  <div class="register-card">
+
+    <h2>Create Account</h2>
+
+    <input placeholder="First Name" [(ngModel)]="firstName" />
+    <input placeholder="Last Name" [(ngModel)]="lastName" />
+    <input placeholder="Email" [(ngModel)]="email" />
+    <input type="password" placeholder="Password" [(ngModel)]="password" />
+
+    <input
+      placeholder="Mobile Number"
+      maxlength="10"
+      [(ngModel)]="mobileNumber"
+      (input)="allowOnlyNumbers($event)"
+    />
+
+    <input placeholder="Address" [(ngModel)]="address" />
+
+    <div class="otp-row">
+
+      <input
+        placeholder="Enter OTP"
+        maxlength="6"
+        [(ngModel)]="otp"
+        (input)="allowOnlyNumbers($event)"
+      />
+
+      <button class="send-btn"
+        (click)="sendOtp()"
+        [disabled]="isLoading">
+  Send OTP
+</button>
+
+
+      <button class="verify-btn"
+        (click)="verifyAndRegister()"
+        [disabled]="isLoading || !otpSent">
+  Verify & Register
+</button>
+
+
+    </div>
+
+    <p class="success" *ngIf="successMsg">{{ successMsg }}</p>
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+    <div class="login-redirect">
+  Already have an account?
+  <a routerLink="/login" routerLinkActive="">Login</a>
+</div>
+
+
+  </div>
+
+</div>

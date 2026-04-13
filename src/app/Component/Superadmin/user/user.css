@@ -1,0 +1,468 @@
+/* ===== Page Base ===== */
+.user-wrapper {
+  padding: 28px;
+  background: linear-gradient(180deg, #f6f9fc, #eef3f9);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system;
+  color: #1f2937;
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.tabs button {
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: 1px solid #dbe2ee;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background: #2563eb;
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ===== Header ===== */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+/* ===== Summary ===== */
+.summary.compact {
+  display: flex;
+  gap: 16px;
+}
+
+.summary.compact div {
+  background: #fff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-weight: 700;
+  min-width: 130px;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+/* ===== Add Button ===== */
+.add-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== TABLE (CRITICAL FIX) ===== */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;   /* FIX */
+  table-layout: fixed;         /* FIX */
+}
+
+.user-table th {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-table td {
+  padding: 16px;
+  font-size: 14px;
+  background: #ffffff;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 14px solid transparent; /* row spacing */
+}
+
+/* ===== Status ===== */
+.status {
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.online {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.offline {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== Actions ===== */
+.actions {
+  white-space: nowrap;
+}
+
+.actions button {
+  margin-right: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background: #e0e7ff;
+  color: #1e40af;
+}
+
+.actions button:nth-child(2) {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.actions button:nth-child(3) {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ===== Modal ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #fff;
+  padding: 24px;
+  width: 360px;
+  border-radius: 14px;
+}
+
+.modal label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.modal input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn.save {
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn.cancel {
+  background: #e5e7eb;
+}
+/* ===== FIX ACTION COLUMN CENTER ALIGNMENT ===== */
+
+/* Center the entire Actions column */
+.user-table th:last-child,
+.user-table td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Keep buttons neatly centered inside column */
+.user-table td:last-child .actions {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Prevent buttons from stretching or breaking layout */
+.user-table td:last-child .actions button {
+  margin: 0;
+  white-space: nowrap;
+}
+/* ===== Page Base ===== */
+.user-wrapper {
+  padding: 28px;
+  background: linear-gradient(180deg, #f6f9fc, #eef3f9);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system;
+  color: #1f2937;
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.tabs button {
+  padding: 10px 26px;
+  border-radius: 999px;
+  border: 1px solid #dbe2ee;
+  background: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tabs .active {
+  background: #2563eb;
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ===== Header ===== */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 26px;
+}
+
+/* ===== Summary ===== */
+.summary.compact {
+  display: flex;
+  gap: 16px;
+}
+
+.summary.compact div {
+  background: #fff;
+  padding: 14px 22px;
+  border-radius: 14px;
+  font-weight: 700;
+  min-width: 130px;
+  text-align: center;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+/* ===== Add Button ===== */
+.add-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 11px 26px;
+  border-radius: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ===== TABLE (CRITICAL FIX) ===== */
+.user-table {
+  width: 100%;
+  border-collapse: collapse;   /* FIX */
+  table-layout: fixed;         /* FIX */
+}
+
+.user-table th {
+  padding: 12px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.user-table td {
+  padding: 16px;
+  font-size: 14px;
+  background: #ffffff;
+  vertical-align: middle;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 14px solid transparent; /* row spacing */
+}
+
+/* ===== Status ===== */
+.status {
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.online {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.offline {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== Actions ===== */
+.actions {
+  white-space: nowrap;
+}
+
+.actions button {
+  margin-right: 6px;
+  padding: 7px 14px;
+  border-radius: 10px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.actions button:first-child {
+  background: #e0e7ff;
+  color: #1e40af;
+}
+
+.actions button:nth-child(2) {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.actions button:nth-child(3) {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* ===== Modal ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: #fff;
+  padding: 24px;
+  width: 360px;
+  border-radius: 14px;
+}
+
+.modal label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.modal input {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn.save {
+  background: #2563eb;
+  color: #fff;
+}
+
+.btn.cancel {
+  background: #e5e7eb;
+}
+/* ===== FIX ACTION COLUMN CENTER ALIGNMENT ===== */
+
+/* Center the entire Actions column */
+.user-table th:last-child,
+.user-table td:last-child {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* Keep buttons neatly centered inside column */
+.user-table td:last-child .actions {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Prevent buttons from stretching or breaking layout */
+.user-table td:last-child .actions button {
+  margin: 0;
+  white-space: nowrap;
+}
+/* ===== TABLE ACTION BUTTONS ===== */
+
+.user-table td button {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border-radius: 6px;
+  border: none;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Edit button */
+.user-table td button:first-child {
+  background: #4f46e5;
+  color: white;
+}
+
+.user-table td button:first-child:hover {
+  background: #4338ca;
+}
+
+/* Disable button */
+.user-table td button:nth-child(2) {
+  background: #ef4444;
+  color: white;
+}
+
+.user-table td button:nth-child(2):hover {
+  background: #dc2626;
+}
+
+/* Enable button */
+.user-table td button:nth-child(3) {
+  background: #10b981;
+  color: white;
+}
+
+.user-table td button:nth-child(3):hover {
+  background: #059669;
+}

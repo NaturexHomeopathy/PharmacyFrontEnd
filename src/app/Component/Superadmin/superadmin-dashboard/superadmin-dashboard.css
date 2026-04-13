@@ -1,0 +1,171 @@
+/* Layout */
+.sa-layout {
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(135deg, #eefaf2, #ffffff);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* Sidebar */
+.sa-sidebar {
+  width: 280px;
+  padding: 22px;
+  background: linear-gradient(180deg, #e8f5e9, #f6fff9);
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated organic glow */
+.sa-sidebar::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(102,187,106,0.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(165,214,167,0.25), transparent 50%);
+  animation: leafFloat 22s linear infinite;
+}
+
+@keyframes leafFloat {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Brand */
+.sa-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-dot {
+  width: 10px;
+  height: 10px;
+  background: #66bb6a;
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(102,187,106,0.8);
+}
+
+/* Menu */
+.sa-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Buttons */
+.sa-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(102,187,106,0.35);
+  color: #2e7d32;
+  padding: 14px 18px;
+  border-radius: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  backdrop-filter: blur(6px);
+  transition: 
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+.sa-btn:hover {
+  background: linear-gradient(135deg, #66bb6a, #43a047);
+  color: #ffffff;
+  transform: translateX(8px);
+  box-shadow: 0 10px 26px rgba(67,160,71,0.45);
+}
+
+/* Optional active look (future-ready) */
+.sa-btn.active {
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(46,125,50,0.6);
+}
+
+/* Logout */
+.logout {
+  margin-top: 22px;
+  background: rgba(252, 234, 234, 0.85);
+  color: #c62828;
+  border: 1px solid rgba(198,40,40,0.3);
+  text-align: center;
+}
+
+.logout:hover {
+  background: linear-gradient(135deg, #c62828, #b71c1c);
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(198,40,40,0.45);
+}
+
+/* Main panel */
+.sa-main {
+  flex: 1;
+  padding: 30px;
+  background: linear-gradient(180deg, #ffffff, #f9fdfb);
+  overflow-y: auto;
+}
+
+/* Smooth scrollbar */
+.sa-main::-webkit-scrollbar {
+  width: 8px;
+}
+.sa-main::-webkit-scrollbar-thumb {
+  background: #c8e6c9;
+  border-radius: 10px;
+}
+/* Leaf pattern texture */
+.sa-sidebar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(76,175,80,0.12) 2px, transparent 3px),
+    radial-gradient(circle at 70% 30%, rgba(102,187,106,0.10) 2px, transparent 3px),
+    radial-gradient(circle at 40% 80%, rgba(129,199,132,0.12) 2px, transparent 3px);
+  background-size: 120px 120px;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Floating leaf blobs */
+.leaf {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(102,187,106,0.25), transparent 70%);
+  border-radius: 60% 40% 60% 40%;
+  animation: leafDrift 28s infinite linear;
+  opacity: 0.5;
+}
+
+.leaf.one {
+  top: 10%;
+  left: -40px;
+}
+
+.leaf.two {
+  bottom: 15%;
+  right: -50px;
+  animation-duration: 35s;
+}
+
+@keyframes leafDrift {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-80px) rotate(360deg); }
+}

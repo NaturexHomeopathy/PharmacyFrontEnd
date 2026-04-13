@@ -1,0 +1,23 @@
+<div class="sa-layout">
+
+  <aside class="sa-sidebar">
+    <div class="sa-brand">SuperAdmin</div>
+
+    <div class="sa-menu">
+      <button class="sa-btn" routerLink="users" routerLinkActive="active">Users</button>
+      <button class="sa-btn" routerLink="category" routerLinkActive="active">Category</button>
+      <button class="sa-btn " routerLink="healthproduct" routerLinkActive="active">Health Products</button>
+      <button class="sa-btn" routerLink="disease" routerLinkActive="active">Disease</button>
+      <button class="sa-btn " routerLink="appointment" routerLinkActive="active">Appointment</button>
+      <button class="sa-btn " routerLink="orders" routerLinkActive="active">Orders</button>
+      <!-- <button class="sa-btn " routerLink="transactions" routerLinkActive="active">Transactions</button> -->
+    </div>
+
+    <button class="sa-btn logout" (click)="logout()">Logout</button>
+  </aside>
+
+  <main class="sa-main">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

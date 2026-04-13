@@ -1,0 +1,105 @@
+<div class="appointment-wrapper">
+
+  <div class="header">
+    <h2>Appointments</h2>
+  </div>
+
+  <div class="filters">
+
+    <div class="filter-item">
+      <label>From Date</label>
+      <input type="date" [(ngModel)]="fromDate">
+    </div>
+
+    <div class="filter-item">
+      <label>To Date</label>
+      <input type="date" [(ngModel)]="toDate">
+    </div>
+
+    <div class="filter-item">
+      <label>Status</label>
+      <select [(ngModel)]="status">
+        <option *ngFor="let s of statuses" [ngValue]="s.value">
+          {{s.label}}
+        </option>
+      </select>
+    </div>
+
+    <div class="filter-button">
+      <button (click)="loadAppointments()">Search</button>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Reason</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let a of paginatedAppointments">
+
+          <td>{{a.bookerName}}</td>
+          <td>{{a.bookerContactNumber}}</td>
+          <td>{{a.appointmentAddress}}</td>
+          <td>{{a.appointmentReason}}</td>
+          <td>{{a.booker?.email}}</td>
+          <td>{{a.appointmentDate | date:'short'}}</td>
+
+          <td>
+            <span class="status"
+              [ngClass]="getStatusText(a.appointmentStatus).toLowerCase()">
+              {{getStatusText(a.appointmentStatus)}}
+            </span>
+          </td>
+
+          <td>
+
+            <ng-container *ngIf="a.appointmentStatus === 1">
+
+              <button class="complete"
+              (click)="updateStatus(a.appointmentId,4)">
+                Complete
+              </button>
+
+              <button class="cancel"
+              (click)="updateStatus(a.appointmentId,3)">
+                Cancel
+              </button>
+
+            </ng-container>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="pagination" *ngIf="showPagination()">
+
+    <button (click)="prevPage()">Previous</button>
+
+    <span>Page {{page}}</span>
+
+    <button (click)="nextPage()">Next</button>
+
+  </div>
+
+</div>

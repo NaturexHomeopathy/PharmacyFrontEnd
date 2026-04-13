@@ -1,0 +1,229 @@
+/* ===== GLOBAL ===== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #f0fdf4;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+  width: 260px;
+  background: #065f46;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.book-btn {
+  width: 100%;
+  padding: 12px;
+  background: #22c55e;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.book-btn:hover {
+  background: #16a34a;
+}
+
+.tabs .tab {
+  padding: 12px;
+  margin-bottom: 8px;
+  background: #047857;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+.tabs .tab:hover {
+  background: #059669;
+}
+
+.tabs .active {
+  background: #22c55e;
+  font-weight: bold;
+}
+
+/* ===== DASHBOARD BUTTON ===== */
+.dashboard-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: #22c55e;
+  border: none;
+  color: white;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dashboard-btn:hover {
+  background: #16a34a;
+}
+
+/* ===== CONTENT ===== */
+.content {
+  flex: 1;
+  padding: 30px;
+  background: #ecfdf5;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.content h2 {
+  color: #065f46;
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: white;
+  padding: 18px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  border-left: 6px solid #22c55e;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ===== MODAL ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #065f46;
+}
+
+.modal-box h2 {
+  margin-bottom: 15px;
+  color: #065f46;
+}
+
+/* ===== INPUTS ===== */
+.modal-box input,
+.modal-box textarea {
+  width: 100%;
+  padding: 11px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid #d1fae5;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.modal-box textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.modal-box button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.modal-box button[type="submit"]:hover {
+  background: #16a34a;
+}
+
+.modal-box button:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-radius: 0 0 14px 14px;
+  }
+
+  .content {
+    padding: 18px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .book-btn {
+    font-size: 15px;
+  }
+
+  .modal-box {
+    padding: 20px;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 480px) {
+
+  .content h2 {
+    font-size: 20px;
+  }
+
+  .tabs .tab {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .modal-box {
+    padding: 18px;
+  }
+
+  .modal-box input,
+  .modal-box textarea {
+    font-size: 14px;
+  }
+  .overlay {
+  pointer-events: none;
+}
+}

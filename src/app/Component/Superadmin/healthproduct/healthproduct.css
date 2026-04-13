@@ -1,0 +1,205 @@
+/* ================= CONTAINER ================= */
+.hp-container {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ================= HEADER ================= */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+select {
+  padding: 8px 12px;
+  min-width: 220px;
+  border-radius: 8px;
+}
+
+/* ================= ADD FORM ================= */
+.add-btn {
+  margin-bottom: 10px;
+}
+
+.add-form {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+/* ================= TABLE ================= */
+.table-wrapper {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow-x: auto;
+}
+
+.hp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hp-table th,
+.hp-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.hp-table thead {
+  background: #e8f5e9;
+}
+
+/* ================= ACTIONS ================= */
+.action-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary { background: #43a047; color: #fff; }
+.btn.edit { background: #e3f2fd; color: #1565c0; }
+.btn.delete { background: #fdecea; color: #c62828; }
+.btn.cancel { background: #eee; }
+
+.btn.upload {
+  background: linear-gradient(135deg, #6c63ff, #5a54e8);
+  color: #fff;
+}
+
+.btn.view {
+  background: #e0f7fa;
+  color: #006064;
+}
+
+/* ================= NO DATA ================= */
+.no-data {
+  padding: 20px;
+  color: #777;
+}
+
+/* ================= BLUR BACKGROUND ================= */
+.blurred {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ================= IMAGE VIEW OVERLAY ================= */
+.image-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+}
+
+/* ================= MODAL CONTENT ================= */
+.image-modal-content {
+  position: relative;
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  max-width: 90vw;
+  max-height: 80vh;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ================= IMAGE ================= */
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* ================= CLOSE BUTTON ================= */
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: #ff5252;
+}
+
+/* ================= SUCCESS TOAST ================= */
+.upload-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 4000;
+}
+.image-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,120px);
+  gap:12px;
+  margin-top:15px;
+}
+
+.image-card{
+  position:relative;
+}
+
+.image-card img{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:6px;
+}
+
+.image-actions{
+  position:absolute;
+  bottom:5px;
+  left:5px;
+  right:5px;
+  display:flex;
+  justify-content:space-between;
+}
+
+.image-actions button{
+  background:white;
+  border:none;
+  cursor:pointer;
+  padding:3px 5px;
+  font-size:12px;
+}
+
+.image-actions .delete{
+  color:red;
+}

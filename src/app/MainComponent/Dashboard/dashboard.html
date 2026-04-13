@@ -1,0 +1,249 @@
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+  <img src="assets/images/naturexlogo.jpeg" alt="NatureX Homeopathy" />
+</div>
+
+    <nav class="nav-links">
+      <a (click)="navigateTo('/medicines')">Medicines</a>
+      <a (click)="navigateTo('/AppoinmentVisitor')">Appointments</a>
+      <a (click)="navigateTo('/orders')">Orders</a>
+      <a (click)="navigateTo('/cart')">Cart</a>
+      <a routerLink="/login" class="cta">Login</a>
+      <div class="profile-wrapper">
+
+  <!-- PROFILE CIRCLE -->
+  <div class="profile-circle" (click)="toggleProfilePanel()">
+    {{ userEmail ? userEmail.charAt(0).toUpperCase() : '👤' }}
+  </div>
+
+  <!-- PROFILE PANEL -->
+  <div class="profile-panel" *ngIf="showProfilePanel">
+
+    <div class="panel-header">
+      <span>Profile</span>
+      <span class="close-btn" (click)="toggleProfilePanel()">✕</span>
+    </div>
+
+    <div class="panel-body">
+      <p *ngIf="userEmail">{{ userEmail }}</p>
+      <p *ngIf="!userEmail">Not Logged In</p>
+
+      <button *ngIf="userEmail" (click)="logout()">
+        Sign Out
+      </button>
+
+      <button *ngIf="!userEmail" routerLink="/login">
+        Login
+      </button>
+    </div>
+
+  </div>
+
+</div>
+
+    </nav>
+  </div>
+</header> 
+
+<!-- HERO SLIDER -->
+<section class="hero-slider">
+  <div class="slide slide-1">
+    <div class="overlay"></div>
+    <div class="slide-content">
+      <h1>Natural Healing, Backed by Care</h1>
+      <p>Consult certified homeopathy doctors and experience long-term wellness.</p>
+      <button class="primary-btn" (click)="bookAppointment()">Book Appointment</button>
+    </div>
+  </div>
+
+  <div class="slide slide-2">
+    <div class="overlay"></div>
+    <div class="slide-content">
+      <h1>Doctors You Can Trust</h1>
+      <p>Experienced professionals with genuine clinical expertise.</p>
+      <button class="primary-btn" (click)="bookAppointment()">Consult Now</button>
+    </div>
+  </div>
+
+  <div class="slide slide-3">
+    <div class="overlay"></div>
+    <div class="slide-content">
+      <h1>Safe Medicine, Delivered</h1>
+      <p>Authentic homeopathy medicines delivered to your doorstep.</p>
+      <button class="primary-btn" (click)="navigateTo('/medicines')">Order Medicines</button>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services">
+  <h2>Healthcare, Made Simple</h2>
+  <p class="subtitle">Everything you need for holistic treatment</p>
+
+  <div class="service-grid">
+    <div class="service-card">
+      <h3>🩺 Doctor Consultation</h3>
+      <p>Online & clinic consultations with verified experts.</p>
+    </div>
+    <div class="service-card">
+      <h3>💊 Medicine Delivery</h3>
+      <p>Authentic medicines delivered safely and on time.</p>
+    </div>
+    <div class="service-card">
+      <h3>📄 Digital Prescriptions</h3>
+      <p>Secure access to prescriptions anytime.</p>
+    </div>
+    <div class="service-card">
+      <h3>📞 Continuous Care</h3>
+      <p>Follow-ups and long-term treatment monitoring.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP BY DISEASE -->
+<section class="shop-disease">
+  <h2>Shop by Disease</h2>
+  <p class="subtitle">
+    Select a condition and explore recommended homeopathy medicines
+  </p>
+
+  <div class="carousel-wrapper">
+
+    <button
+      class="nav-btn left"
+      *ngIf="showLeftArrow"
+      (click)="scrollLeft()">‹</button>
+
+    <div
+      class="disease-carousel"
+      #carousel
+      (scroll)="updateArrows()"
+      [class.centered]="!showLeftArrow && !showRightArrow">
+
+      <div
+        class="disease-card"
+        *ngFor="let d of diseases"
+        (click)="goToDiseaseShop(d.diseaseId)">
+
+        <img
+          *ngIf="d.imageUrl && d.imageUrl !== ''; else noImage"
+          [src]="d.imageUrl"
+          alt="{{ d.diseaseName }}"
+          class="disease-img"
+          loading="lazy" />
+
+        <ng-template #noImage>
+          <div class="disease-icon">
+            {{ d.diseaseName.charAt(0) }}
+          </div>
+        </ng-template>
+
+        <h3>{{ d.diseaseName }}</h3>
+      </div>
+
+      <div *ngIf="diseases.length === 0" class="empty-disease">
+        No diseases available
+      </div>
+    </div>
+
+    <button
+      class="nav-btn right"
+      *ngIf="showRightArrow"
+      (click)="scrollRight()">›</button>
+
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <h2>Why Patients Choose NatureX</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <h3>Experienced Doctors</h3>
+      <p>Clinically trained professionals with years of practice.</p>
+    </div>
+    <div class="why-card">
+      <h3>Honest Treatment</h3>
+      <p>No shortcuts. Only evidence-based care.</p>
+    </div>
+    <div class="why-card">
+      <h3>Patient-First Care</h3>
+      <p>Focused on long-term wellness.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HEALING PHILOSOPHY -->
+<section class="philosophy">
+  <h2>Our Healing Philosophy</h2>
+  <p class="subtitle">
+    True wellness begins with understanding the root cause — not just symptoms.
+  </p>
+
+  <div class="philosophy-container">
+
+    <div class="philosophy-text">
+      <p>
+        At NatureX Homeopathy, we believe that every individual is unique.
+        Our treatments focus on stimulating the body’s natural healing
+        ability rather than suppressing symptoms.
+      </p>
+
+      <p>
+        By combining classical homeopathy principles with modern clinical
+        understanding, we aim to deliver long-lasting relief and improved
+        overall wellbeing.
+      </p>
+
+      <p>
+        Our patient-first approach ensures that each treatment plan is
+        personalized, safe, and designed for sustainable health outcomes.
+      </p>
+    </div>
+
+    <div class="philosophy-points">
+      <div class="point">✔ Root-cause based treatment</div>
+      <div class="point">✔ Gentle & safe medicines</div>
+      <div class="point">✔ Personalized care plans</div>
+      <div class="point">✔ Long-term wellness focus</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BLACK ABOUT US SECTION -->
+<section class="about-dark">
+
+  <div class="about-dark-container">
+
+    <div class="about-dark-text">
+      <h2>About NatureX Homeopathy</h2>
+
+      <p>
+        NatureX Homeopathy is committed to providing safe,
+        ethical, and effective natural healthcare through
+        classical homeopathy. Our approach focuses on treating
+        the root cause of illness rather than suppressing symptoms.
+      </p>
+
+      <p>
+        With experienced practitioners and personalized care
+        plans, we aim to restore balance, improve immunity,
+        and support long-term wellness for every patient.
+      </p>
+
+      <p>
+        We believe true healing is gentle, sustainable,
+        and tailored to the individual.
+      </p>
+    </div>
+
+    <div class="about-dark-info">
+      <h3>Contact Information</h3>
+
+      <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+      <p><strong>✉️ Email:</strong> care@naturex.com</p>
+      <p><strong>📍 Location:</strong> Mumbai, Maharashtra, India</p>
+      <p><strong>🕒 Hours:</strong> Mon – Sat, 9 AM – 7 PM</p>

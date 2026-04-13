@@ -1,0 +1,39 @@
+<div class="overlay">
+  <div class="login-card">
+
+    <!-- CLOSE ICON -->
+    <span class="close-btn" (click)="closeLogin()">✕</span>
+
+    <form (ngSubmit)="login()">
+
+      <h2>Login</h2>
+
+      <label>Email</label>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        required />
+
+      <label>Password</label>
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required />
+
+      <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <button type="submit" [disabled]="isLoading">
+        {{ isLoading ? 'Signing in…' : 'Login' }}
+      </button>
+
+    </form>
+
+    <div class="login-options">
+      <a routerLink="/forgot-password">Forgot password?</a>
+      <a routerLink="/register">Register</a>
+    </div>
+
+  </div>
+</div>

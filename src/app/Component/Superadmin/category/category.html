@@ -1,0 +1,107 @@
+<div class="category-page">
+
+  <h2>Health Product Categories</h2>
+
+  <!-- ADD CATEGORY -->
+  <div class="add-section">
+    <input
+      type="text"
+      placeholder="Enter category name"
+      [(ngModel)]="newCategoryName"
+    />
+    <button class="add-btn" (click)="addCategory()">
+      Add Category
+    </button>
+  </div>
+
+  <!-- LOADING -->
+  <div *ngIf="loading" class="loading">
+    Loading categories...
+  </div>
+
+  <!-- CATEGORY TABLE -->
+  <table *ngIf="!loading" class="category-table">
+
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Category Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let cat of categories; let i = index">
+
+        <td>{{ i + 1 }}</td>
+
+        <!-- NAME -->
+        <td>
+          <span *ngIf="editingId !== cat.categoryId">
+            {{ cat.categoryName }}
+          </span>
+
+          <input
+            *ngIf="editingId === cat.categoryId"
+            [(ngModel)]="editingName"
+          />
+        </td>
+
+        <!-- STATUS -->
+        <td>
+          <span
+            class="status"
+            [class.enabled]="cat.isActive"
+            [class.disabled]="!cat.isActive">
+            {{ cat.isActive ? 'Enabled' : 'Disabled' }}
+          </span>
+        </td>
+
+        <!-- ACTIONS -->
+        <td class="actions">
+
+          <button
+            *ngIf="editingId !== cat.categoryId"
+            class="edit-btn"
+            (click)="startEdit(cat)">
+            Update
+          </button>
+
+          <button
+            *ngIf="editingId === cat.categoryId"
+            class="save-btn"
+            (click)="updateCategory()">
+            Save
+          </button>
+
+          <button
+            *ngIf="editingId === cat.categoryId"
+            class="cancel-btn"
+            (click)="cancelEdit()">
+            Cancel
+          </button>
+
+          <button
+            class="toggle-btn"
+            [class.disable]="cat.isActive"
+            [class.enable]="!cat.isActive"
+            (click)="toggleCategory(cat)">
+            {{ cat.isActive ? 'Disable' : 'Enable' }}
+          </button>
+
+        </td>
+      </tr>
+
+      <tr *ngIf="categories.length === 0">
+        <td colspan="4" class="no-data">
+          No categories found
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>

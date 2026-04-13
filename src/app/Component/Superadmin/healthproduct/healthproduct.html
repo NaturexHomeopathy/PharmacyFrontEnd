@@ -1,0 +1,181 @@
+<div class="hp-container"
+     [class.blurred]="viewImageUrl">
+
+  <!-- HEADER -->
+  <div class="top-bar">
+    <h2>Health Products</h2>
+
+    <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+      <option [ngValue]="null">All Categories</option>
+      <option *ngFor="let c of categoryList" [ngValue]="c.id">
+        {{ c.name }}
+      </option>
+    </select>
+  </div>
+
+  <!-- ADD BUTTON -->
+  <button class="btn primary add-btn"
+          *ngIf="selectedCategory !== null"
+          (click)="openAdd()">
+    + Add Product
+  </button>
+
+  <!-- ADD FORM -->
+  <div class="add-form" *ngIf="showAddForm">
+    <input placeholder="Name" [(ngModel)]="newProduct.productName">
+    <input type="number" placeholder="Price" [(ngModel)]="newProduct.healthProductPrice">
+    <input type="number" placeholder="Quantity" [(ngModel)]="newProduct.stockQuantity">
+    <button class="btn primary" (click)="addProduct()">Save</button>
+  </div>
+
+  <!-- TABLE -->
+  <div class="table-wrapper">
+    <table class="hp-table">
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th *ngIf="selectedCategory === null">Category</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Image</th>
+          <th *ngIf="selectedCategory !== null">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let p of products">
+
+          <!-- NAME -->
+          <td>
+            <input *ngIf="editingId === p.healthProductId"
+                   [(ngModel)]="p.productName">
+
+            <span *ngIf="editingId !== p.healthProductId">
+              {{ p.productName }}
+            </span>
+          </td>
+
+          <!-- CATEGORY -->
+          <td *ngIf="selectedCategory === null">
+            {{ categoryMap[p.categoryId] || '—' }}
+          </td>
+
+          <!-- PRICE -->
+          <td>
+            <input *ngIf="editingId === p.healthProductId"
+                   type="number"
+                   [(ngModel)]="p.healthProductPrice">
+
+            <span *ngIf="editingId !== p.healthProductId">
+              ₹ {{ p.healthProductPrice }}
+            </span>
+          </td>
+
+          <!-- QUANTITY -->
+          <td>
+            <input *ngIf="editingId === p.healthProductId"
+                   type="number"
+                   [(ngModel)]="p.stockQuantity">
+
+            <span *ngIf="editingId !== p.healthProductId">
+              {{ p.stockQuantity }}
+            </span>
+          </td>
+
+          <!-- IMAGE COLUMN -->
+          <td>
+
+            <!-- VIEW IMAGE -->
+            <button class="btn view"
+                    *ngIf="p.imageUrl"
+                    (click)="openImageViewer(p.imageUrl)">
+              View
+            </button>
+
+            <!-- UPLOAD IMAGE -->
+            <button class="btn upload"
+                    (click)="fileInput.click()">
+              Upload
+            </button>
+
+            <input #fileInput
+                   type="file"
+                   accept="image/*"
+                   hidden
+                   (change)="onImageSelected($event, p)">
+
+          </td>
+
+          <!-- ACTIONS -->
+          <td *ngIf="selectedCategory !== null">
+
+            <div class="action-row">
+
+              <ng-container *ngIf="editingId === p.healthProductId; else viewBtns">
+
+                <button class="btn primary"
+                        (click)="saveEdit(p)">
+                  Save
+                </button>
+
+                <button class="btn cancel"
+                        (click)="cancelEdit()">
+                  Cancel
+                </button>
+
+              </ng-container>
+
+              <ng-template #viewBtns>
+
+                <button class="btn edit"
+                        (click)="startEdit(p)">
+                  Update
+                </button>
+
+                <button class="btn delete"
+                        (click)="deleteProduct(p.healthProductId)">
+                  Delete
+                </button>
+
+              </ng-template>
+
+            </div>
+
+          </td>
+
+        </tr>
+
+        <!-- NO DATA -->
+        <tr *ngIf="products.length === 0">
+          <td [attr.colspan]="tableColumnCount + 1" class="no-data">
+            No products found
+          </td>
+        </tr>
+
+      </tbody>
+
+    </table>
+  </div>
+
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal-backdrop" *ngIf="viewImageUrl"></div>
+
+<div class="image-modal" *ngIf="viewImageUrl">
+
+  <button class="close-btn"
+          (click)="closeImageViewer()">
+    ✕
+  </button>
+
+  <img [src]="viewImageUrl">
+
+</div>
+
+<!-- SUCCESS TOAST -->
+<div class="upload-toast" *ngIf="showUploadSuccess">
+  ✅ Image uploaded successfully
+</div>

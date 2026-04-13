@@ -1,0 +1,111 @@
+<div class="orders-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <h3>My Account</h3>
+
+    <button
+      class="side-btn"
+      [class.active]="activeTab === 'current'"
+      (click)="switchTab('current')">
+      📦 Current Orders
+    </button>
+
+    <button
+      class="side-btn"
+      [class.active]="activeTab === 'history'"
+      (click)="switchTab('history')">
+      🧾 Order History
+    </button>
+
+    <hr>
+
+    <button class="dashboard-btn" (click)="goToDashboard()">
+      ⬅ Go To Dashboard
+    </button>
+
+  </div>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <h2 *ngIf="activeTab === 'current'">Current Orders</h2>
+    <h2 *ngIf="activeTab === 'history'">Order History</h2>
+
+    <div *ngIf="loading" class="loading">
+      Loading orders...
+    </div>
+
+    <!-- ================= CURRENT ORDERS ================= -->
+    <div *ngIf="!loading && activeTab === 'current'">
+
+      <div *ngIf="currentOrders.length === 0" class="empty">
+        No active orders.
+      </div>
+
+      <div *ngFor="let order of currentOrders" class="order-card">
+
+        <div class="card-header">
+          <div>
+            <h4>Order #{{ order.orderId | slice:0:8 }}</h4>
+            <p>{{ order.createdAt | date:'medium':'Asia/Kolkata' }}</p>
+          </div>
+
+          <span class="status" [ngClass]="getStatusClass(order.status)">
+            {{ order.status }}
+          </span>
+        </div>
+
+        <!-- ITEMS -->
+        <div class="items">
+          <div *ngFor="let item of order.items" class="item-row">
+            <span>{{ item.productName }}</span>
+            <span>{{ item.quantity }} × ₹{{ item.price }}</span>
+          </div>
+        </div>
+
+        <div class="total">
+          Total: ₹{{ order.totalAmount }}
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= ORDER HISTORY ================= -->
+    <div *ngIf="!loading && activeTab === 'history'">
+
+      <div *ngIf="orderHistory.length === 0" class="empty">
+        No completed orders yet.
+      </div>
+
+      <div *ngFor="let order of orderHistory" class="order-card history">
+
+        <div class="card-header">
+          <div>
+            <h4>Order #{{ order.orderId | slice:0:8 }}</h4>
+            <p>{{ order.createdAt | date:'medium':'Asia/Kolkata' }}</p>
+          </div>
+
+          <span class="status" [ngClass]="getStatusClass(order.status)">
+            {{ order.status }}
+          </span>
+        </div>
+
+        <!-- ✅ FIX: SHOW ITEMS IN HISTORY -->
+        <div class="items">
+          <div *ngFor="let item of order.items" class="item-row">
+            <span>{{ item.productName }}</span>
+            <span>{{ item.quantity }} × ₹{{ item.price }}</span>
+          </div>
+        </div>
+
+        <div class="total">
+          Total Paid: ₹{{ order.totalAmount }}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

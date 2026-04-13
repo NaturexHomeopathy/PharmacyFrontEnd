@@ -1,0 +1,103 @@
+<section class="medicine-wrapper">
+
+<!-- FLOATING CART BUTTON -->
+<div class="cart-popup" routerLink="/cart">
+
+ 🛒
+
+ <span class="cart-count" *ngIf="cartCount > 0">
+   {{cartCount}}
+ </span>
+
+</div>
+
+<div class="top-header">
+
+  <div class="category-select" *ngIf="!hideDiseaseDropdown">
+    <select [(ngModel)]="selectedDiseaseId" (change)="onDiseaseChange()">
+      <option value="all">All Diseases</option>
+      <option *ngFor="let d of diseases" [value]="d.diseaseId">
+        {{ d.diseaseName }}
+      </option>
+    </select>
+  </div>
+
+  <div class="category-select">
+    <select [(ngModel)]="selectedCategoryId" (change)="onCategoryChange()">
+      <option value="all">All Categories</option>
+      <option *ngFor="let c of categories" [value]="c.categoryId">
+        {{ c.categoryName }}
+      </option>
+    </select>
+  </div>
+
+  <h2 class="page-title">Medicines</h2>
+
+  <button class="dashboard-btn" routerLink="/">
+    Go to Dashboard
+  </button>
+
+</div>
+
+<div class="content-container">
+
+  <div class="no-products" *ngIf="!loading && filteredProducts.length === 0">
+    No products found
+  </div>
+
+  <div class="product-list" *ngIf="filteredProducts.length > 0">
+
+    <div class="image-card" *ngFor="let p of filteredProducts">
+
+      <div class="not-available" *ngIf="p.quantity === 0">
+        Not Available
+      </div>
+
+      <img
+        [src]="p.imageUrl"
+        alt="{{ p.name }}"
+        (click)="openImageViewer(p.imageUrl)"
+      />
+
+      <div class="card-content">
+
+        <h3>{{ p.name }}</h3>
+
+        <p class="price">₹{{ p.price }}</p>
+
+        <!-- ADD / REMOVE BUTTON -->
+
+        <button *ngIf="!isInCart(p.productId)"
+                (click)="addToCart(p)"
+                class="add-btn">
+          Add to Cart
+        </button>
+
+        <button *ngIf="isInCart(p.productId)"
+                (click)="removeFromCart(p.productId)"
+                class="remove-btn">
+          Remove from Cart
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- IMAGE POPUP -->
+
+<div class="modal-backdrop" *ngIf="viewImageUrl"></div>
+
+<div class="image-modal" *ngIf="viewImageUrl">
+
+<button class="close-btn" (click)="closeImageViewer()">✕</button>
+
+<img [src]="viewImageUrl">
+
+</div>

@@ -1,0 +1,264 @@
+.disease-container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 16px;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ADD */
+.add-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.add-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* TABLE */
+.table-wrapper {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.disease-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.disease-table th,
+.disease-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+.disease-table thead {
+  background: #f1f8e9;
+}
+
+/* STATUS */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+}
+
+.status.active { background: #e8f5e9; color: #2e7d32; }
+.status.inactive { background: #fdecea; color: #c62828; }
+
+/* ACTIONS */
+.action-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* BUTTONS */
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary { background: #43a047; color: #fff; }
+.btn.edit { background: #e3f2fd; color: #1565c0; }
+.btn.toggle { background: #fff8e1; color: #f57f17; }
+.btn.delete { background: #fdecea; color: #c62828; }
+.btn.cancel { background: #eeeeee; }
+
+.no-data {
+  padding: 20px;
+  text-align: center;
+  color: #777;
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+}
+
+/* PRODUCT PANEL */
+.disease-products {
+  margin-top: 30px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.product-list {
+  max-height: 320px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.product-item {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.panel-actions {
+  margin-top: 14px;
+  text-align: right;
+}
+/* BLUR EFFECT */
+.blurred {
+  filter: blur(4px);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* MODAL BACKDROP */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 1000;
+}
+
+/* MODAL WINDOW */
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  width: 520px;
+  max-height: 80vh;
+  border-radius: 14px;
+  z-index: 1001;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* MODAL HEADER */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+}
+
+/* MODAL BODY */
+.modal-body {
+  padding: 14px;
+  overflow-y: auto;
+}
+
+.product-item {
+  display: flex;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* MODAL FOOTER */
+.modal-footer {
+  padding: 12px;
+  text-align: right;
+  border-top: 1px solid #eee;
+}
+
+/* BUTTONS (reuse) */
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary { background: #43a047; color: #fff; }
+.btn.edit { background: #e3f2fd; color: #1565c0; }
+.btn.toggle { background: #fff8e1; color: #f57f17; }
+.btn.delete { background: #fdecea; color: #c62828; }
+.btn.cancel { background: #eeeeee; }
+
+.btn.upload {
+  background: linear-gradient(135deg, #6c63ff, #5a54e8);
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn.upload:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn.view {
+  background: #e0f7fa;
+  color: #006064;
+}
+/* IMAGE VIEW MODAL */
+.image-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 16px;
+  border-radius: 14px;
+  z-index: 2000;
+  max-width: 90vw;
+  max-height: 80vh;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.image-modal img {
+  max-width: 100%;
+  max-height: 70vh;
+  border-radius: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: #ff5252;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* UPLOAD TOAST */
+.upload-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 3000;
+}

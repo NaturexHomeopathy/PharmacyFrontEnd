@@ -1,0 +1,73 @@
+<div class="user-wrapper">
+
+  <div class="tabs">
+    <button [class.active]="activeTab==='superadmin'" (click)="setTab('superadmin')">SuperAdmins</button>
+    <button [class.active]="activeTab==='visitor'" (click)="setTab('visitor')">Visitors</button>
+  </div>
+
+  <div class="header-row">
+    <div class="summary compact">
+      <div>Total: {{ totalCount }}</div>
+      <!-- <div>Online: {{ onlineCount }}</div>
+      <div>Offline: {{ offlineCount }}</div> -->
+    </div>
+
+    <button *ngIf="activeTab !== 'visitor'" class="add-btn" (click)="addUser()">
+      + Add {{ activeTab | titlecase }}
+    </button>
+  </div>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Enabled</th>
+        <!-- <th>Status</th> -->
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.firstName }} {{ u.lastName }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.isEnabled ? 'Yes' : 'No' }}</td>
+        <!-- <td>
+          <span [class.online]="u.isOnline" [class.offline]="!u.isOnline">
+            {{ u.isOnline ? 'Online' : 'Offline' }}
+          </span>
+        </td> -->
+        <td>
+          <button *ngIf="activeTab !== 'visitor'" (click)="updateUser(u)">Edit</button>
+          <button *ngIf="u.isEnabled" (click)="disableUser(u.userId)">Disable</button>
+          <button *ngIf="!u.isEnabled" (click)="enableUser(u.userId)">Enable</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal">
+      <h3>{{ isEditMode ? 'Update User' : 'Add User' }}</h3>
+
+      <label>First Name</label>
+      <input [(ngModel)]="formUser.firstName">
+
+      <label>Last Name</label>
+      <input [(ngModel)]="formUser.lastName">
+
+      <label>Email</label>
+      <input [(ngModel)]="formUser.email">
+
+      <label>Password {{ isEditMode ? '(leave blank to keep same)' : '' }}</label>
+<input type="password" [(ngModel)]="password">
+
+      <div class="modal-actions">
+        <button (click)="saveUser()">Save</button>
+        <button (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,155 @@
+.orders-wrapper{
+  padding:30px;
+  background:#f4fff7;
+  font-family:Segoe UI, sans-serif;
+}
+
+.header{
+  margin-bottom:25px;
+}
+
+.header h2{
+  color:#2f7a55;
+  font-weight:600;
+}
+
+/* Filters */
+
+.filters{
+  display:flex;
+  gap:20px;
+  align-items:end;
+  margin-bottom:25px;
+  flex-wrap:wrap;
+}
+
+.filter-item{
+  display:flex;
+  flex-direction:column;
+}
+
+.filter-item label{
+  font-size:13px;
+  color:#2f7a55;
+  margin-bottom:4px;
+}
+
+input,select{
+  padding:7px 10px;
+  border:1px solid #cfe9d9;
+  border-radius:5px;
+  background:white;
+  min-width:150px;
+}
+
+.filter-button button{
+  background:#58b883;
+  color:white;
+  border:none;
+  padding:8px 16px;
+  border-radius:6px;
+  font-weight:500;
+  cursor:pointer;
+}
+
+.filter-button button:hover{
+  background:#43a571;
+}
+
+/* Table */
+
+.table-container{
+  background:white;
+  border-radius:8px;
+  overflow-x:auto;
+  box-shadow:0 3px 8px rgba(0,0,0,0.05);
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:1100px;
+}
+
+thead{
+  background:#bfe8cd;
+}
+
+th{
+  padding:12px;
+  text-align:left;
+  font-size:14px;
+  color:#1e4d36;
+}
+
+td{
+  padding:12px;
+  border-bottom:1px solid #eef7f1;
+  font-size:14px;
+}
+
+tr:hover{
+  background:#f5fff9;
+}
+
+/* Status badges */
+
+.status{
+  padding:5px 10px;
+  border-radius:20px;
+  font-size:12px;
+  color:white;
+  font-weight:500;
+}
+
+.status.pending{
+  background:#f0b429;
+}
+
+.status.cancelled{
+  background:#e25858;
+}
+
+.status.completed{
+  background:#3ea86a;
+}
+
+/* Buttons */
+
+.complete{
+  background:#3ea86a;
+  border:none;
+  padding:6px 12px;
+  border-radius:5px;
+  color:white;
+  margin-right:6px;
+  cursor:pointer;
+}
+
+.cancel{
+  background:#e25858;
+  border:none;
+  padding:6px 12px;
+  border-radius:5px;
+  color:white;
+  cursor:pointer;
+}
+
+/* Pagination */
+
+.pagination{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+}
+
+.pagination button{
+  background:#58b883;
+  color:white;
+  border:none;
+  padding:7px 14px;
+  border-radius:5px;
+  cursor:pointer;
+}

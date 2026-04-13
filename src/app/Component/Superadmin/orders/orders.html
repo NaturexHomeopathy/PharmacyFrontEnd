@@ -1,0 +1,118 @@
+<div class="orders-wrapper">
+
+  <div class="header">
+    <h2>Orders</h2>
+  </div>
+
+  <!-- 🔹 Filters -->
+  <div class="filters">
+
+    <div class="filter-item">
+      <label>From Date</label>
+      <input type="date" [(ngModel)]="fromDate">
+    </div>
+
+    <div class="filter-item">
+      <label>To Date</label>
+      <input type="date" [(ngModel)]="toDate">
+    </div>
+
+    <div class="filter-item">
+      <label>Status</label>
+      <select [(ngModel)]="status">
+        <option *ngFor="let s of statuses" [ngValue]="s.value">
+          {{ s.label }}
+        </option>
+      </select>
+    </div>
+
+    <div class="filter-button">
+      <button (click)="loadOrders()">Search</button>
+    </div>
+
+  </div>
+
+  <!-- 🔹 Orders Table -->
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+          <th>Address</th>
+          <th>Email</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let o of paginatedOrders">
+
+          <td>{{ o.fullName }}</td>
+          <td>{{ o.contact }}</td>
+          <td>{{ o.address }}</td>
+          <td>{{ o.email || '-' }}</td>
+
+          <td>
+            <div *ngFor="let i of o.items">
+              {{ i.productName }} ({{ i.quantity }} × ₹{{ i.price }})
+            </div>
+          </td>
+
+          <td>₹{{ o.totalAmount }}</td>
+
+          <td>{{ o.createdAt | date:'short' }}</td>
+
+          <td>
+            <span class="status"
+              [ngClass]="getStatusText(o.status).toLowerCase()">
+              {{ getStatusText(o.status) }}
+            </span>
+          </td>
+
+          <td>
+
+            <!-- Only Pending orders can be changed -->
+            <ng-container *ngIf="o.status === 1">
+
+              <button class="complete"
+                (click)="updateStatus(o.orderId, 4)">
+                Complete
+              </button>
+
+              <button class="cancel"
+                (click)="updateStatus(o.orderId, 5)">
+                Cancel
+              </button>
+
+            </ng-container>
+
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- 🔹 Pagination -->
+  <div class="pagination" *ngIf="showPagination()">
+
+    <button (click)="prevPage()">Previous</button>
+
+    <span>Page {{ page }}</span>
+
+    <button (click)="nextPage()">Next</button>
+
+  </div>
+
+</div>

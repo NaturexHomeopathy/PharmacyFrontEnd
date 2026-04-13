@@ -1,0 +1,122 @@
+<div class="disease-container"
+     [class.blurred]="showProductModal || showImageModal">
+
+  <div class="top-bar">
+    <h2>Diseases</h2>
+  </div>
+
+  <div class="add-form">
+    <input placeholder="Enter disease name" [(ngModel)]="newDiseaseName">
+    <button class="btn primary" (click)="addDisease()">+ Add Disease</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="disease-table">
+      <thead>
+        <tr>
+          <th>Disease</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let d of paginatedDiseases">
+
+          <td>
+            <input *ngIf="editingId === d.id" [(ngModel)]="d.diseaseName">
+            <span *ngIf="editingId !== d.id">{{ d.diseaseName }}</span>
+          </td>
+
+          <td>
+            <span class="status"
+                  [class.active]="d.isActive"
+                  [class.inactive]="!d.isActive">
+              {{ d.isActive ? 'Active' : 'Disabled' }}
+            </span>
+          </td>
+
+          <td class="action-row">
+
+            <ng-container *ngIf="editingId === d.id; else viewBtns">
+              <button class="btn primary" (click)="saveEdit(d)">Save</button>
+              <button class="btn cancel" (click)="cancelEdit()">Cancel</button>
+            </ng-container>
+
+            <ng-template #viewBtns>
+
+              <button class="btn edit" (click)="startEdit(d)">Edit</button>
+
+              <button class="btn toggle" (click)="toggleDisease(d)">
+                {{ d.isActive ? 'Disable' : 'Enable' }}
+              </button>
+
+              <button class="btn edit" (click)="openProductModal(d)">
+                Products
+              </button>
+
+              <button class="btn upload" (click)="uploadInput.click()">
+                Upload
+              </button>
+
+              <input #uploadInput
+                     type="file"
+                     accept="image/*"
+                     hidden
+                     (change)="onImageSelected($event, d)">
+
+              <button class="btn view" (click)="viewImage(d)">
+                View
+              </button>
+
+              <button class="btn delete" (click)="deleteDisease(d.id)">
+                Delete
+              </button>
+
+            </ng-template>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-backdrop" *ngIf="showProductModal"></div>
+
+<div class="modal" *ngIf="showProductModal">
+  <div class="modal-header">
+    <h3>Assign Products to {{ selectedDisease?.diseaseName }}</h3>
+    <button class="btn cancel" (click)="closeProductModal()">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <label class="product-item" *ngFor="let p of allProducts">
+      <input type="checkbox"
+             [checked]="selectedProductIds.has(p.healthProductId)"
+             (change)="toggleProduct(p.healthProductId, $event.target.checked)">
+      {{ p.productName }}
+    </label>
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn primary" (click)="saveProductMapping()">Save</button>
+  </div>
+</div>
+
+<!-- IMAGE VIEW MODAL -->
+<div class="image-modal" *ngIf="showImageModal">
+  <div class="image-modal-content">
+
+    <button class="close-btn" (click)="closeImageModal()">✕</button>
+
+    <img [src]="previewImageUrl" alt="Disease Image">
+
+  </div>
+</div>
+
+<!-- UPLOAD SUCCESS TOAST -->
+<div class="upload-toast" *ngIf="showUploadSuccess">
+  ✅ File uploaded successfully
+</div>

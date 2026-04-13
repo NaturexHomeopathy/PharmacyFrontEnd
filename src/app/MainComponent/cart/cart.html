@@ -1,0 +1,104 @@
+<!-- ================= CART VIEW ================= -->
+
+<div *ngIf="!checkoutMode">
+
+  <div class="header">
+    <button class="back-btn" (click)="goToDashboard()">← Back</button>
+    <div class="total">₹ {{ total }}</div>
+  </div>
+
+  <div class="cart-container">
+
+    <div *ngIf="cartItems.length === 0" class="empty">
+      Cart is empty
+    </div>
+
+    <div *ngFor="let item of cartItems" class="card">
+
+      <img [src]="item.imageUrl" alt="product">
+
+      <div class="row">
+
+        <div class="details">
+          <h3>{{ item.name }}</h3>
+          <div class="price">₹ {{ item.price }}</div>
+        </div>
+
+        <div class="qty">
+          <button (click)="decreaseQty(item.productId)">−</button>
+          <span>{{ item.qty }}</span>
+          <button (click)="increaseQty(item.productId)">+</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="bottom" *ngIf="cartItems.length > 0">
+    <button class="proceed" (click)="openCheckout()">
+      Next
+    </button>
+  </div>
+
+</div>
+
+
+<!-- ================= CHECKOUT VIEW ================= -->
+
+<div *ngIf="checkoutMode">
+
+  <div class="header">
+    <button class="back-btn" (click)="backToCart()">← Back</button>
+    <div class="total">₹ {{ total }}</div>
+  </div>
+
+  <div class="checkout">
+
+    <h2>Customer Details</h2>
+
+    <input
+      type="text"
+      placeholder="Full Name"
+      [(ngModel)]="fullName"
+    >
+
+    <input
+      type="tel"
+      placeholder="Contact Number"
+      [(ngModel)]="contact"
+    >
+
+    <textarea
+      placeholder="Delivery Address"
+      [(ngModel)]="deliveryAddress">
+    </textarea>
+
+    <button
+      class="place-order"
+      (click)="placeOrderCOD()"
+      [disabled]="placingOrder">
+
+      {{ placingOrder ? 'Placing Order...' : 'Place Order (Cash on Delivery)' }}
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================= SUCCESS POPUP ================= -->
+
+<div class="overlay" *ngIf="orderPlaced">
+
+  <div class="modal">
+
+    <h2>✅ Order Placed Successfully</h2>
+
+    <p>Your order will be delivered soon.</p>
+
+  </div>
+
+</div>
