@@ -14,34 +14,42 @@ body {
 
 
 
-/* ================= HERO SLIDER ================= */
+/* ================= HERO SLIDER FIXED ================= */
+
 .hero-slider {
   position: relative;
-  height: 78vh;
+  width: 100%;
+  min-height: 100vh; /* full screen */
+  height: 100dvh; /* better mobile support */
   overflow: hidden;
 }
 
+/* Slides */
 .slide {
   position: absolute;
   inset: 0;
   opacity: 0;
   animation: fadeHero 15s infinite;
+  display: flex;
+  align-items: center;
 }
 
+/* Background images */
 .slide-1 {
-  background: url('/assets/images/slide1.jpg') center / cover no-repeat;
+  background: url('/assets/images/slide1.jpg') center/cover no-repeat;
 }
 
 .slide-2 {
-  background: url('/assets/images/slide2.jpg') center / cover no-repeat;
+  background: url('/assets/images/slide2.jpg') center/cover no-repeat;
   animation-delay: 5s;
 }
 
 .slide-3 {
-  background: url('/assets/images/slide5.jpg') center / cover no-repeat;
+  background: url('/assets/images/slide5.jpg') center/cover no-repeat;
   animation-delay: 10s;
 }
 
+/* Animation */
 @keyframes fadeHero {
   0% { opacity: 0; }
   10% { opacity: 1; }
@@ -49,6 +57,7 @@ body {
   40% { opacity: 0; }
 }
 
+/* Overlay */
 .overlay {
   position: absolute;
   inset: 0;
@@ -58,27 +67,28 @@ body {
   );
 }
 
+/* Content */
 .slide-content {
   position: relative;
   z-index: 2;
   max-width: 1100px;
+  width: 100%;
   margin: auto;
-  padding: 130px 20px 0;
+  padding: 0 20px;
   color: #ffffff;
 }
 
+/* Desktop text */
 .slide-content h1 {
-  font-size: 46px;
+  font-size: 48px;
   font-weight: 800;
-  margin-bottom: 14px;
 }
 
 .slide-content p {
   font-size: 18px;
-  max-width: 560px;
-  margin-bottom: 22px;
+  max-width: 550px;
+  margin: 15px 0 25px;
 }
-
 /* ================= BUTTON ================= */
 .primary-btn {
   padding: 13px 30px;
@@ -1069,4 +1079,53 @@ max-width: 380px;
     text-align: center;
   }
 
+}
+/* ================= MOBILE HERO FIX ================= */
+
+@media (max-width: 768px) {
+
+  .hero-slider {
+    min-height: 85vh;
+    height: auto;
+  }
+
+  .slide {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slide-content {
+    padding: 60px 16px 40px;
+  }
+
+  .slide-content h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .slide-content p {
+    font-size: 15px;
+  }
+
+}
+
+/* ================= LANDSCAPE MOBILE FIX ================= */
+
+@media (max-width: 768px) and (orientation: landscape) {
+
+  .hero-slider {
+    min-height: 120vh; /* prevent squishing */
+  }
+
+  .slide-content h1 {
+    font-size: 24px;
+  }
+
+}
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
 }
