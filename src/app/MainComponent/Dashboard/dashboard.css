@@ -1168,3 +1168,13 @@ DO NOT REMOVE EXISTING CSS
     min-height: 320px !important;
   }
 }
+/* =========================================
+FIX: Keep hero slides in same position (mobile)
+========================================= */
+
+@media (max-width: 768px) {
+  .slide {
+    position: absolute !important;
+    inset: 0 !important;
+  }
+}
