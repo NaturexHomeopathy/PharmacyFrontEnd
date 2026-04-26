@@ -1129,3 +1129,42 @@ max-width: 380px;
   justify-content: center;
   height: 100%;
 }
+/* =========================================
+HERO SLIDER HEIGHT FIX (SAFE ADD-ON)
+DO NOT REMOVE EXISTING CSS
+========================================= */
+
+/* Desktop - reduce height */
+.hero-slider {
+  height: 70vh !important;
+  min-height: 420px !important;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-slider {
+    height: 60vh !important;
+  }
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+
+  .hero-slider {
+    height: auto !important;       /* 🔥 main fix */
+    min-height: 380px !important;
+  }
+
+  /* Prevent "double" slide stacking feel */
+  .slide {
+    position: relative !important;
+  }
+
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .hero-slider {
+    min-height: 320px !important;
+  }
+}
